@@ -1,16 +1,22 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {BOARD_WIDTH} from '../../../consts';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 
 interface Props {
   color: string;
+  getColor: (string) => void;
 }
 export const GameButton = (props: Props) => {
-  const {color} = props;
+  const {color, getColor} = props;
+
+  const onPress = () => {
+    return getColor(color);
+  };
 
   return (
     <TouchableOpacity
-      style={[styles.square, {backgroundColor: color}]}></TouchableOpacity>
+      onPress={onPress}
+      style={[styles.square, {backgroundColor: color}]}
+    />
   );
 };
 

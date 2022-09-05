@@ -2,7 +2,12 @@ import React from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {GameButton} from './GameButton';
 
-export const GameButtons = () => {
+interface Props {
+  getColor: (string) => void;
+}
+export const GameButtons = (props: Props) => {
+  const {getColor} = props;
+
   const DATA = [
     {id: 1, color: 'red'},
     {id: 2, color: 'green'},
@@ -12,7 +17,7 @@ export const GameButtons = () => {
 
   const renderItem = ({item}) => {
     const backgroundColor = item.color;
-    return <GameButton color={backgroundColor} />;
+    return <GameButton color={backgroundColor} getColor={getColor} />;
   };
 
   return (
@@ -29,5 +34,6 @@ const styles = StyleSheet.create({
   row: {
     flex: 1,
     justifyContent: 'space-around',
+    borderWidth: 1,
   },
 });
